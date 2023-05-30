@@ -8,40 +8,46 @@
 <?php
     include_once('includes/fonction_mat.php');
     include_once('includes/variable.php');
+
     include_once('includes/header.php');
     
+
 ?>
 </head>
 <body>
 <?php 
+
 if (empty($_SESSION['mail'])){ //Vérifie connection
     include_once('includes/redirection_connexion.php');
 }
 else{
-            //Début Formulaire nouveau matériel
-            echo "<form action='new_materiel.php' method='post'>
-    <div id=\"div_formulaire\">
 
-        <div id=\"titre\">
+           
+
+       echo  "<div id=\"titre\">
             <p>Information sur le matériel : </p>
         </div>";
 
+ //Début Formulaire nouveau matériel
+           echo "<form action='new_materiel.php' method='post'>
+    <div id=\"div_formulaire\">
 
-
-        //Contenu des informations pour remplir le Formulaire
-        echo "<div id=\"container\">
+             <div id=\"container\">
             <div id=\"div_info\">";
 
 
 
 
+
                 //Inserer le Nom du matériel
-                echo "<p>Nom : </p>
+                echo "<div id=\"Nom_mat\">
+                <p>Nom : </p>
                 <input class=\"champs_info\" type=\"text\" name=\"nom\" required=\"required\">";
                 $erreur_nom=noms(); // erreur de noms 
                 if ($erreur_nom!=false){
                 echo $erreur_nom;
                 }   
+                echo "</div>";
                 echo "<br>
                 <br>";
 
@@ -49,34 +55,42 @@ else{
 
 
                 //Inserer le Type du matériel, on peux ajouter si besoin
-                echo "<p>Type : </p>
+                echo "<div id=\"type_mat\">
+                <p>Type : </p>
                 <select class=\"champs_info\" name=\"type\" required=\"required\">
                     <option value=\"\">-- Type de matériel --</option>
                     <option value=\"camera\">Caméra</option>
                     <option value=\"micro\">micro</option>
+
                     <option value=\"fond_vert\">Fond vert</option>
+
                     <option value=\"Trépied\">Trépied</option>
                 </select>
-    
+                </div>
                 <br>
                 <br>";
 
 
 
                 //Inserer la Réference du matériel (que des chiffres)
-                echo "<p>Référence : </p>
+                echo "<div id=\"ref_mat\"> 
+                <p>Référence : </p>
                 <input class=\"champs_info\" type=\"text\" name=\"reference\" required=\"required\">";
+                
                 
 
                 $erreur_reference=reference(); // erreur de noms 
                 if ($erreur_reference!=false){
                 echo $erreur_reference;
                 }
-
+                echo "</div>";
             
             echo "</div>";
 
-
+                echo "<br>";
+                echo "<br>";
+                echo "<br>";
+                
 
             //Ajouter une description au matériel
             echo "<div id=\"description\">
@@ -98,7 +112,7 @@ else{
 
                 //Bouton pour ajouter le matériel à la BDD
         echo "<div id=\"div_boutton\">
-            <button type=\"submit\" id=\"boutton_ajout\">Ajouter nouveau matériel</button>
+            <button type=\"submit\" class=\"boutton_ajout\">Ajouter nouveau matériel</button>
         </div>
     </div>
 </form>
